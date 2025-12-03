@@ -1,0 +1,21 @@
+.publisher-name {
+    background-color: #F5F5F5;
+    padding: 15px;
+}
+
+.publisher-name h1 {
+    width: auto;
+}
+
+.publisher-logo {
+    padding: 15px 30px;
+    border-radius: 15px;
+}
+
+.sorting-options {
+    border-top: 1px solid black;
+}
+
+.publisher-description {
+    padding: 30px;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta  name="_csrf" th:content="${_csrf.token}"/>
+    <meta  name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>AmazonKindleStore.com</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+<div class="container-fluid">
+    <div class="row justify-content-center"
+         th:text="'There are a total of ' + ${#lists.size(users)}
+                + ' users.'" th:style="'margin-top: 20px'"></div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-auto table-container">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr class="col">
+                        <th class="col-auto">ID</th>
+                        <th class="col-auto">Email</th>
+                        <th class="col-auto">Username</th>
+                        <th class="col-auto">Roles</th>
+                        <th class="col-auto">Add or Remove Admin Role</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="col" th:each="user : ${users}" th:id="${user.id}">
+                        <td class="col-auto" th:text="${user.id}"></td>
+                        <td class="col-auto" th:text="${user.email}"></td>
+                        <td class="col-auto" th:text="${user.username}"></td>
+                        <td class="col-auto user-roles"
+                            th:text="${#lists.size(user.roles) >= 2} ? 'User, Admin' : 'User'"></td>
+                        <td class="col-auto user-buttons">
+                            <div th:if="${#lists.size(user.roles) == 1}" class="add-admin-role-btn btn"
+                                 th:data-user-id="${user.id}">Add Admin Role</div>
+                            <div th:if="${#lists.size(user.roles) >= 2}" class="remove-admin-role-btn btn"
+                                 th:data-user-id="${user.id}">Remove Admin Role</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:inline="javascript">
+    let isLoggedIn = [[${isLoggedIn}]];
+</script>
+<script th:src="@{/javascript/bootstrap.min.js}"></script>
+<script th:src="@{/javascript/app.js}"></script>
+</body>
+</html>

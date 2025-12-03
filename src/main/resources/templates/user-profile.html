@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta  name="_csrf" th:content="${_csrf.token}"/>
+    <meta  name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>AmazonKindleStore.com</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+
+<div class="container-fluid">
+    <div class="list-container row align-content-center">
+        <div class="col-auto table-container registration-container">
+            <h2 class="text-center">Account details</h2>
+            <div class="registration-form">
+                <div class="profile-field">
+                    <div><label>Email</label></div>
+                    <div th:text="${userDto.email}"></div>
+                </div>
+                <div class="profile-field">
+                    <div><label>Username</label></div>
+                    <div th:text="${userDto.username}"></div>
+                </div>
+                <div class="profile-field">
+                    <div><label>First name</label></div>
+                    <div th:text="${userDto.firstName}"></div>
+                </div>
+                <div class="profile-field">
+                    <div><label>Last name</label></div>
+                    <div th:text="${userDto.lastName}"></div>
+                </div>
+                <div class="profile-field">
+                    <div><label>Age</label></div>
+                    <div th:text="${userDto.age}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:inline="javascript">
+    let isLoggedIn = [[${isLoggedIn}]];
+</script>
+<script th:src="@{/javascript/bootstrap.min.js}"></script>
+<script th:src="@{/javascript/app.js}"></script>
+</body>
+</html>

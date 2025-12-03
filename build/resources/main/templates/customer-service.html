@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>AmazonKindleStore.com</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-6">
+
+            <div class="help-container">
+                <h2>How would you like to get help?</h2>
+                <p>Our messaging assistants can solve most issues or get you connected to the right associate</p>
+                <div class="contact-options">
+                    <div class="phone-contact">
+                        <h3>Request a phone call</h3>
+                        <p>Available now</p>
+                        <button>Request call now</button>
+                    </div>
+                    <div class="chat-contact">
+                        <h3>Chat with us</h3>
+                        <p>Available now</p>
+                        <button>Start chatting now</button>
+                    </div>
+                </div>
+                <div class="help-articles">
+                    <h2>Find answers in help articles</h2>
+                    <p>These help articles may solve the issue you told us you're having</p>
+                    <div class="articles-grid">
+                        <div class="article">
+                            <h4>VAT Rates</h4>
+                            <p>VAT rates may vary depending on the destination country and product type.</p>
+                        </div>
+                        <div class="article">
+                            <h4>Accepted Payment Methods</h4>
+                            <p>Amazon.com accepts a variety of payment options, including credit and debit cards.</p>
+                        </div>
+                        <div class="article">
+                            <h4>Promotions & Membership Programs</h4>
+                            <p>...</p>
+                        </div>
+                        <div class="article">
+                            <h4>Lightning Deals</h4>
+                            <p>...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:inline="javascript">
+    let isLoggedIn = [[${isLoggedIn}]];
+</script>
+<script th:src="@{/javascript/bootstrap.min.js}"></script>
+<script th:src="@{/javascript/app.js}"></script>
+</body>
+</html>

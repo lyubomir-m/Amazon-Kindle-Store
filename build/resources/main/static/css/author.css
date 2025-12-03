@@ -1,0 +1,19 @@
+.authors-container .title {
+    text-align: center;
+}
+
+.author-picture img {
+    padding-bottom: 15px;
+    padding-right: 30px;
+    min-width: 300px;
+    width: 300px;
+}
+
+.author-name {
+    background-color: #F5F5F5;
+    padding: 15px;
+}
+
+.sorting-options {
+    border-top: 1px solid black;
+}

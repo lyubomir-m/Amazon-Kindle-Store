@@ -1,0 +1,37 @@
+.your-list {
+    background-color: #F5F5F5;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.delete-rating-btn {
+    background-color: #e14c4c;
+}
+
+.delete-rating-btn:hover {
+    background-color: #af5858;
+}
+
+.update-rating-btn {
+    background-color: #FFD814;
+}
+
+.update-rating-btn:hover {
+    background-color: #F7CA00;
+}
+
+.star {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.rating {
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.blue-text {
+    color: blue;
+}

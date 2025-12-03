@@ -1,0 +1,234 @@
+.book-details-container {
+    margin-top: 15px;
+}
+
+.book-details-container > div {
+    margin-left: 15px;
+    margin-right: 15px;
+    border-bottom: 3px solid #BBBFBF;
+    padding-bottom: 15px;
+}
+
+.book {
+    margin-bottom: 15px;
+}
+
+
+.book-cover-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.purchase-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.price-container {
+    border: 6px solid #BBBFBF;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+}
+
+.book-cover {
+    position: relative;
+    background-color: #ddd;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+    max-height: 400px;
+    max-width: 300px;
+    width: 300px;
+}
+
+.book-cover a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-cover, .book-cover > * {
+    box-sizing: border-box;
+}
+
+
+.cover-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    margin: 10%;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.4em;
+    max-height: 7em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cover-authors {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: 10%;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2em;
+    max-height: 3.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.book a {
+    color: black;
+    text-decoration: none;
+}
+
+.book-authors a, .publisher-date a {
+    color: #017185;
+    text-decoration: none;
+}
+
+.book-title {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.star {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+}
+
+.price {
+    font-size: 1.5em;
+    color: black;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+.rating {
+
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #BBBFBF;
+}
+
+.rating span {
+
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.number-of-ratings {
+    margin-left: 10px;
+    color: #017185;
+}
+
+.book-description {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.available-instantly{
+    color: #565959;
+    font-size: 0.9em;
+}
+
+.kindle-ebook {
+    color: black;
+    font-size: 0.9em;
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-details-3 {
+    border-top: 1px solid #BBBFBF;
+    padding-bottom: 12px;
+}
+
+.rate-review {
+    padding-bottom: 6px;
+}
+
+.publisher-name {
+    margin-bottom: 12px;
+}
+
+.add-to-cart-btn {
+    background-color: #FFD814;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #F7CA00;
+}
+
+.buy-now-btn {
+    background-color: #FFA41C;
+}
+
+.buy-now-btn:hover {
+    background-color: #FA8900;
+}
+
+.add-to-your-list-btn {
+    background-color: cornflowerblue;
+}
+
+.add-to-your-list-btn:hover {
+    background-color: #4c7add;
+}
+
+.view-cover-image-btn, .open-rating-modal-btn, .open-review-modal-btn {
+    background-color: #ddd;
+}
+
+.view-cover-image-btn:hover, .open-rating-modal-btn:hover, .open-review-modal-btn:hover {
+    background-color: silver;
+}
+
+.book-details a:hover {
+    color: #ff9900;
+}
+
+img {
+    width: 200px;
+    height: auto;
+    max-height: 100%;
+}
+
+.publisher-name {
+    width: 250px;
+    max-width: 250px;
+}
+
+#averageRating {
+    margin-right: 5px;
+}
+
+.similar-ebooks {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}

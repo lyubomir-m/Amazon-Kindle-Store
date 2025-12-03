@@ -1,0 +1,78 @@
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<div th:fragment="rate-review">
+    <div th:if="${isLoggedIn}">
+        <div id="ratingModal" style="display:none; position:fixed; left:50%; top:50%;
+            transform:translate(-50%, -50%); z-index:1000; background:white; border:1px solid black; padding:20px;">
+            <div id="rating-modal-image-container">
+                <img id="rating-modal-image" src="" alt="Image Description">
+            </div>
+            <div class="modal-text">Rate this eBook</div>
+            <div th:if="${#strings.containsIgnoreCase(currentUrl, '/books/')}"
+                 class="modal-details" th:text="${book.title}"></div>
+            <div>
+                <span>Rating: </span>
+                <select id="bookRating">
+                    <option value="" disabled selected>Please select a rating</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+            </div>
+
+            <div id="errorMessagesRating" style="color: red; margin-top: 10px;"></div>
+            <div id="resultMessagesRating" style="color: green; margin-top: 10px;"></div>
+
+            <button th:if="${#strings.containsIgnoreCase(currentUrl, '/books/')}"
+                    type="button" id="submit-rating-btn" th:data-book-id="${book.id}"
+                    class="btn">Submit</button>
+            <button th:if="${#strings.containsIgnoreCase(currentUrl, '/users/ratings') or
+            #strings.containsIgnoreCase(currentUrl, '/users/reviews')}" class="btn"
+                    type="button" id="update-rating-btn" th:data-book-id="0">Update</button>
+            <button class="btn" type="button" id="close-rating-btn">Close</button>
+        </div>
+
+        <div id="reviewModal" style="display:none; position:fixed; left:50%; top:50%;
+            transform:translate(-50%, -50%); z-index:1000; background:white; border:1px solid black; padding:20px;">
+            <div id="review-modal-image-container">
+                <img id="review-modal-image" src="" alt="Image Description">
+            </div>
+            <div class="modal-text">Review this eBook</div>
+            <div th:if="${#strings.containsIgnoreCase(currentUrl, '/books/')}"
+                 class="modal-details" th:text="${book.title}"></div>
+            <div>
+                <span>Rating: </span>
+                <select id="reviewRating">
+                    <option value="" disabled selected>Please select a rating</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+            </div>
+            <div>
+                <label for="reviewTitle">Review Title:</label>
+                <input type="text" id="reviewTitle" placeholder="Enter the title of your review"
+                       style="width: 100%"/>
+            </div>
+            <div>
+                <label for="reviewText">Review Text:</label>
+                <textarea id="reviewText" style="width: 100%" rows="3" placeholder="Write your review here"></textarea>
+            </div>
+
+            <div id="errorMessagesReview" style="color: red; margin-top: 10px;"></div>
+            <div id="resultMessagesReview" style="color: green; margin-top: 10px;"></div>
+
+            <button th:if="${#strings.containsIgnoreCase(currentUrl, '/books/')}" class="btn"
+                    type="button" id="submit-review-btn" th:data-book-id="${book.id}">Submit</button>
+            <button th:if="${#strings.containsIgnoreCase(currentUrl, '/users/ratings') or
+            #strings.containsIgnoreCase(currentUrl, '/users/reviews')}" class="btn"
+                    type="button" id="update-review-btn" th:data-book-id="0">Update</button>
+            <button type="button" id="close-review-btn" class="btn">Close</button>
+        </div>
+    </div>
+
+</div>

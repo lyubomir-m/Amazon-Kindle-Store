@@ -1,0 +1,44 @@
+.your-list {
+    background-color: #F5F5F5;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.book-list {
+    padding-top: 15px;
+    padding-left: 30px;
+    padding-right: 15px;
+}
+
+.order {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border: 1px solid #D5D9D9;
+}
+
+.order-details {
+    padding: 20px;
+    background-color: #F0F2F2;
+    color: #575959;
+    border-bottom: 1px solid #D5D9D9;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.orders-list,
+.book-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.order-item {
+    padding: 15px;
+}
+
+.book {
+    border: transparent;
+}

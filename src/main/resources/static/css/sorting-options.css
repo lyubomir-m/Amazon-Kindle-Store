@@ -1,0 +1,11 @@
+#sortOptions {
+    margin-right: 12px;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+.sorting-options {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid black;
+}

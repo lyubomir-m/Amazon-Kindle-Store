@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta  name="_csrf" th:content="${_csrf.token}"/>
+    <meta  name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>AmazonKindleStore.com</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/book-list.css}">
+    <link rel="stylesheet" th:href="@{/css/sidebar.css}">
+    <link rel="stylesheet" th:href="@{/css/sorting-options.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+
+<div class="main-container container-fluid">
+
+    <div th:replace="~{fragments/book-list-sorting-options :: sorting-options}"></div>
+
+    <div class="row">
+        <div class="sidebar col-12 col-xl-2" th:insert="~{fragments/sidebar :: sidebar}"></div>
+        <div class="books-pages col-12 col-xl-10">
+            <div class="book-list row" th:insert="~{fragments/book-list :: book-list}"></div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <div th:insert="~{fragments/book-list-pages :: book-list-pages}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+
+<script th:inline="javascript">
+    let isLoggedIn = [[${isLoggedIn}]];
+</script>
+<script th:src="@{/javascript/bootstrap.min.js}"></script>
+<script th:src="@{/javascript/app.js}"></script>
+</body>
+</html>

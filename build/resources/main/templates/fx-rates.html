@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta  name="_csrf" th:content="${_csrf.token}"/>
+  <meta  name="_csrf_header" th:content="${_csrf.headerName}"/>
+  <title>AmazonKindleStore.com</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css/common.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+<div class="container-fluid">
+  <div class="row justify-content-center"
+       th:text="'The foreign exchange rates were last updated on ' + ${#temporals.format(lastUpdated, 'MMMM d, yyyy')}
+                + '.'" th:style="'margin-top: 20px'"></div>
+  <div class="row justify-content-center">One euro is equal to:</div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-auto table-container">
+
+        <table class="table table-hover">
+          <thead>
+          <tr class="col">
+            <th class="col-auto">Symbol</th>
+            <th class="col-auto">Code</th>
+            <th class="col-auto">Name</th>
+            <th class="col-auto">Latest Rate</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="col" th:each="entry : ${latestRates}">
+            <td class="col-auto" th:text="${entry.key.symbol}"></td>
+            <td class="col-auto" th:text="${entry.key.code}"></td>
+            <td class="col-auto" th:text="${entry.key.name}"></td>
+            <td class="col-auto" th:text="${#numbers.formatDecimal(entry.value, 1, 'WHITESPACE', 4, 'POINT')}"></td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:inline="javascript">
+  let isLoggedIn = [[${isLoggedIn}]];
+</script>
+<script th:src="@{/javascript/bootstrap.min.js}"></script>
+<script th:src="@{/javascript/app.js}"></script>
+</body>
+</html>

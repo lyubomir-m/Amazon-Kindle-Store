@@ -1,0 +1,22 @@
+.your-list {
+    background-color: #F5F5F5;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.delete-from-cart-btn {
+    background-color: #e14c4c;
+}
+
+.delete-from-cart-btn:hover {
+    background-color: #af5858;
+}
+
+.checkout-btn {
+    background-color: cornflowerblue;
+    margin-top: 0;
+}
+
+.checkout-btn:hover {
+    background-color: #4c7add;
+}

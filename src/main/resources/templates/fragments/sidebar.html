@@ -1,0 +1,22 @@
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<div th:fragment="sidebar">
+    <div class="sidebar-content">
+        <div class="categories-title">Categories</div>
+        <div class="categories">
+            <div class="parent-categories">
+                <a th:each="parent : ${parentCategories}"
+                   th:href="@{/categories/{id}(id=${parent.id}, page = 0, sortBy = ${currentSort})}">
+                    <div th:text="'< ' + ${parent.name}"></div>
+                </a>
+            </div>
+            <div class="current-category" th:text="${currentCategory.name}"></div>
+            <div class="direct-subcategories">
+                <a th:each="subcategory : ${directSubcategories}"
+                   th:href="@{/categories/{id}(id=${subcategory.id}, page = 0, sortBy = ${currentSort})}">
+                    <div class="direct-subcategory" th:text="${subcategory.name}"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

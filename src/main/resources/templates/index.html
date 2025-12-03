@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta  name="_csrf" th:content="${_csrf.token}"/>
+    <meta  name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>AmazonKindleStore.com</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/homepage.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+<div class="homepage container-fluid">
+    <div class="homepage-title text-center">
+        <h2>Amazon Kindle Store Best Sellers</h2>
+    </div>
+
+    <div class="book-list row justify-content-center">
+        <div class="book col-auto" th:each="book : ${books}" th:object="${book}">
+            <a th:href="@{/books/{id}(id=*{id})}">
+                <div class="book-cover" th:style="'background-color:' + *{coverColor}">
+                    <div class="cover-title" th:text="*{title}"></div>
+                    <div class="cover-authors" >
+                        <div class="author" th:each="author : *{authors}" th:text="${author.fullName}"></div>
+                    </div>
+                </div>
+            </a>
+            <div class="book-details">
+                <div class="book-title"><a th:href="@{/books/{id}(id=*{id})}" th:text="*{title}"></a></div>
+
+                <div class="rating">
+                    <!-- Full Stars -->
+                    <span th:each="i : ${#numbers.sequence(1, book.fullStars)}">
+        <img class="star" th:src="@{/stars/full-star.jpeg}" alt="Full Star">
+    </span>
+                    <!-- Half Star -->
+                    <span th:if="${book.halfStar == 1}">
+        <img class="star" th:src="@{/stars/half-star.png}" alt="Half Star">
+    </span>
+                    <!-- Empty Stars -->
+                    <span th:if="${book.emptyStars > 0}">
+                        <span th:each="i : ${#numbers.sequence(1, book.emptyStars)}">
+        <img class="star" th:src="@{/stars/empty-star.png}" alt="Empty Star">
+    </span>
+                    </span>
+                    <span class="number-of-ratings"
+                          th:text="${#numbers.formatDecimal(book.ratingsCount, 0, 'WHITESPACE', 0, 'POINT')}"></span>
+                </div>
+
+                <div class="kindle-ebook">Kindle eBook</div>
+                <div class="price" th:text="${book.selectedCurrency.symbol} +
+                ${#numbers.formatDecimal(book.selectedCurrencyPrice, 1, 'WHITESPACE', 2, 'POINT')}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:inline="javascript">
+    let isLoggedIn = [[${isLoggedIn}]];
+</script>
+<script th:src="@{/javascript/bootstrap.min.js}"></script>
+<script th:src="@{/javascript/app.js}"></script>
+</body>
+</html>

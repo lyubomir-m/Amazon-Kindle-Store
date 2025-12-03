@@ -1,0 +1,159 @@
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<div th:fragment="navigation">
+
+    <div th:replace="~{fragments/icons :: icons}"></div>
+
+    <div id="modalBackdrop" style="display: none; position:fixed; width:100%; height:100%;
+    top:0; left:0; background:rgba(0,0,0,0.5); z-index:999;"></div>
+    <div th:if="${!isLoggedIn}" id="loginModal" style="display:none; position:fixed; left:50%; top:50%;
+            transform:translate(-50%, -50%); z-index:1000; background:white; border:1px solid black; padding:20px;">
+        Please log in to your account <a th:href="@{/users/login}">here</a>.
+        <div>
+            <button type="button" id="loginModalCloseButton" class="btn">Close</button>
+        </div>
+    </div>
+    <div id="commonModal" style="display:none; position:fixed; left:50%; top:50%;
+            transform:translate(-50%, -50%); z-index:1000; background:white; border:1px solid black; padding:20px;">
+        <div th:unless="${#strings.containsIgnoreCase(currentUrl, 'admin-panel')
+                or #strings.containsIgnoreCase(currentUrl, '/users/cart')}" id="common-modal-image-container">
+            <img id="common-modal-image" src="" >
+        </div>
+        <div id="commonModalText"></div>
+        <div id="commonModalErrors" style="color: red; margin-top: 10px;"></div>
+        <div>
+            <button type="button" id="commonModalCloseButton" class="btn">Close</button>
+        </div>
+    </div>
+
+    <div class="nav-container container-fluid">
+        <div class="nav-row row align-items-center">
+            <div class="nav-section left col-auto logo-div">
+                <a href="/" class="navbar-brand">
+                    <svg class="amazon-logo">
+                        <use href="#amazon-logo"></use>
+                    </svg>
+                </a>
+            </div>
+            <div class="nav-section center col">
+                <div class="row justify-content-center">
+                    <form th:action="@{/search}" method="get" class="search-form col col-xxl-6">
+                        <div class="search-container row justify-content-center">
+                            <input type="text" name="query" placeholder="Search Amazon Kindle Store" class="col">
+                            <button type="submit" class="search-button col-auto">
+                                <img class="search-icon" th:src="@{/icons/search.png}">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <form class="col-auto" action="/change-currency" method="POST">
+                <select name="currencyCode" onchange="this.form.submit()">
+                    <th:block th:each="currency : ${allCurrencies}">
+                        <option th:value="${currency.code}"
+                                th:text="${currency.symbol + ' - ' + currency.code}"
+                                th:selected="${currency.code == selectedCurrency.code}">
+                        </option>
+                    </th:block>
+                </select>
+                <input th:if="${isLoggedIn}" type="hidden" name="_csrf" th:value="${_csrf.token}">
+                <input type="hidden" name="redirectUrl" th:value="@{/}">
+            </form>
+
+            <div class="account col-auto dropdwn">
+                <div class="your-account">
+                    <a th:href="@{/users/profile}">
+                        <div>
+                            <span sec:authorize="isAuthenticated()">Hello, <span th:text="${userDto.firstName}"></span></span>
+                            <span sec:authorize="!isAuthenticated()">Hello, sign in</span>
+                        </div>
+                        Your Account
+                        <svg class="down-arrow">
+                            <use href="#down-arrow"></use>
+                        </svg>
+                    </a>
+                </div>
+                <div class="dropdown-account">
+                    <div class="dropdown-account-title">Your Account</div>
+
+                    <div th:if="${!isLoggedIn}"><a th:href="@{/users/login}">Sign in</a></div>
+                    <div th:if="${!isLoggedIn}"><a th:href="@{/users/register}">Register</a></div>
+
+                    <div th:if="${isLoggedIn}">
+                        <div><a th:href="@{/users/profile}">Profile</a></div>
+                        <div><a th:href="@{/users/books}">Owned eBooks</a></div>
+                        <div><a th:href="@{/users/orders}">Orders</a></div>
+                        <div><a th:href="@{/users/ratings}">Ratings</a></div>
+                        <div><a th:href="@{/users/reviews}">Reviews</a></div>
+                        <div><a th:href="@{/users/list}">List</a></div>
+                        <div><a th:href="@{/users/cart}">Cart</a></div>
+
+                        <div class="logout-div">
+                            <form th:action="@{/users/logout}" method="post">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                                <button type="submit" class="logout-btn">Sign out</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="cart col-auto">
+                <a class="cart-div" th:href="@{/users/cart}">
+                    <div class="cart-icon">
+                        <svg class="shopping-cart">
+                            <use href="#shopping-cart"></use>
+                        </svg>
+                    </div>
+                    <div class="number-of-books-in-cart">
+                        <div id="numberOfBooksInCart" th:text="${userDto} ? ${userDto.shoppingCart.books.size} : '0'">
+                            Number of products in user's cart
+                        </div>
+                        <div>Cart</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="nav-row row align-items-center">
+            <div class="nav-section left col-6">
+                <div class="row justify-content-start">
+                    <div class="dropdwn col-auto">
+                        <a th:href="@{/categories/1(page = 0, sortBy = 'purchaseCountDesc')}"
+                           class="dropbtn">
+                            Categories
+                            <svg class="down-arrow">
+                                <use href="#down-arrow"></use>
+                            </svg>
+                        </a>
+                        <div class="dropdown-categories">
+                            <div class="row row-cols-2 categories-list">
+                                <div class="book-category" th:each="category : ${level2Categories}">
+                                    <a th:text="${category.name}"
+                                       th:href="@{/categories/{id}(id=${category.id})}">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="col-auto" th:href="@{/categories/1(page = 0, sortBy = 'purchaseCountDesc')}">Best
+                        Sellers</a>
+                    <a class="col-auto" th:href="@{/categories/1(page = 0, sortBy = 'publicationDateDesc')}">Newest
+                        eBooks</a>
+                </div>
+            </div>
+            <div class="nav-section right col-6">
+                <div class="row justify-content-end">
+                    <a th:if="${!isLoggedIn}" class="col-auto" th:href="@{/users/login}">Sign in</a>
+                    <a th:if="${!isLoggedIn}" class="col-auto" th:href="@{/users/register}">Register</a>
+                    <a class="col-auto" th:href="@{/admin-panel}" sec:authorize="hasRole('ADMIN')">Admin Panel</a>
+                    <a class="col-auto" th:href="@{/fx-rates}">FX Rates</a>
+                    <a class="col-auto" th:href="@{/customer-service}">Customer Service</a>
+                    <a class="col-auto" th:href="@{/about}">About</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

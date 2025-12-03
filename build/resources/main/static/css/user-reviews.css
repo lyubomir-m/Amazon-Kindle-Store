@@ -1,0 +1,50 @@
+.your-list {
+    background-color: #F5F5F5;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.delete-review-btn {
+    background-color: #e14c4c;
+}
+
+.delete-review-btn:hover {
+    background-color: #af5858;
+}
+
+.update-review-btn {
+    background-color: #FFD814;
+}
+
+.update-review-btn:hover {
+    background-color: #F7CA00;
+}
+
+.star {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.review {
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.blue-text {
+    color: blue;
+}
+
+.review-title {
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.review-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
